@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -37,11 +39,15 @@ fun WelcomeScreen(onLoginClick: () -> Unit) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Bem-vindo", style = MaterialTheme.typography.headlineMedium)
+            Text(
+                text = "Bem-vindo",
+                style = MaterialTheme.typography.headlineMedium
+            )
             Spacer(modifier = Modifier.height(24.dp))
             Box(modifier = Modifier.widthIn(max = 300.dp)) {
                 Button(
@@ -64,11 +70,11 @@ fun LoginScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Login", style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.height(16.dp))
             Box(modifier = Modifier.widthIn(max = 300.dp)) {
                 OutlinedTextField(
@@ -94,7 +100,8 @@ fun LoginScreen() {
             Spacer(modifier = Modifier.height(16.dp))
             Box(modifier = Modifier.widthIn(max = 300.dp)) {
                 Button(
-                    onClick = {},
+                    onClick = { /* ação login */ },
+                    enabled = username.isNotBlank() && password.isNotBlank(),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text("Login")
